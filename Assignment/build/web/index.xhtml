@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Home</title> 
+        <title>Bird View</title>
+        <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/images.css" rel="stylesheet" type="text/css"/>  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    </h:head>   
+    <h:body>
+        <header id="home" class="header">
+            <nav class="nav" role="navigation">
+                <div class="container nav-elements">
+                    <div class="branding">
+                        <a href="#home"><img src="resources/images/Logo.gif" alt=""/></a>
+                    </div>
+                    <ul class="navbar">       
+                        <li><a href="faces/login.xhtml">Login</a></li>
+                        <li><a href="faces/registration.xhtml">Registration</a></li>
+                        <li>
+                            <a href="admin/adminHome.xhtml">Admin</a>
+                        </li>
+                    </ul>                   
+                </div>
+            </nav>
+            <div class="container tagline">
+                <p>Native Birds - Bird Life in Australia</p>
+            </div>
+        </header>
+        <f:view>
+            <h:form>
+                <div class='search-content'>
+                    <div class='search'>
+                        <td width ="100" valign="top">Bird Name </td>
+                        <td>
+                            <h:inputText id="searchByName" value="#{applicationController.searchByName}" title="searchByName">
+
+                            </h:inputText>
+                        </td>
+                        <td width ="100" valign="top">City Name </td>
+                        <td>
+                            <h:selectOneMenu id="cityId" value="#{bird.cityId}">
+                                <f:selectItem itemValue="#{null}" itemLabel="--select--" />
+                                <f:selectItems value="#{applicationController.allCityTypes}" var="c"  
+                                               itemLabel="#{c.cityName}" itemValue="#{c.cityId}" />
+                            </h:selectOneMenu>
+                        </td>
+                        <td>
+                            <h:commandButton id="searchBirds" value="Search" action="#{applicationController.searchBirdLst(applicationController.searchByName,bird.cityId)}" class="btn btn-primary">  
+                            </h:commandButton>
+                            
+                        </td>
+                        <td>
+<!--                            <h:inputText id="qta_field" value="" title="Search Event">
+                            </h:inputText>-->
+                            <input type="text" id="qta_field" value="#{webServiceUser.eventName}"/>
+                            <a href='' onclick="this.href='webresources/user/getAll?name='+document.getElementById('qta_field').value">Search For an Event</a>
+
+                            
+                        </td>
+                    </div>
+                </div>
+                <div class='content'>
+                    <ul class="product-list">
+                        <li class="photo-left" data-prod_id="V-A1037">
+                            <h:commandLink action="#{applicationController.fetchBirdLst}" class="btn btn-primary" >
+                                <f:param name="action" value ="53101"/>
+                                <div class='image'>
+                                    <img src="resources/images/penguins.jpg" alt="penguins" />
+                                </div>
+                                <h2 class='photo-name'>Penguins</h2>
+                            </h:commandLink>
+                        </li>
+                        <li class="photo-left" data-prod_id="V-A1037">
+                            <h:commandLink action="#{applicationController.fetchBirdLst}" class="btn btn-primary" >
+                                <f:param name="action" value ="32101"/>
+                                <div class='image'>
+                                    <img src="resources/images/duck.jpg" alt="duck"/>
+                                </div>
+                                <h2 class='photo-name'>Duck</h2>
+                            </h:commandLink>
+                        </li>
+
+                        <li class="photo-left" data-prod_id="V-A1037">
+                            <h:commandLink action="#{applicationController.fetchBirdLst}" class="btn btn-primary" >
+                                <f:param name="action" value ="32101"/>
+                                <div class='image'>
+                                    <img src="resources/images/owl.jpg" alt="owl" />
+                                </div>
+                                <h2 class='photo-name'>Owl</h2>
+                            </h:commandLink>
+                        </li>
+                        <li class="photo-right" data-prod_id="V-A1037">
+                            <h:commandLink action="#{applicationController.fetchBirdLst}" class="btn btn-primary" >
+                                <f:param name="action" value ="53102"/>
+                                <div class='image'>
+                                    <img src="resources/images/parrot.jpg" alt="parrot" />
+                                </div>
+                                <h2 class='photo-name'>Parrot</h2>
+                            </h:commandLink>
+                        </li>
+                        <li class="photo-right" data-prod_id="V-A1037">
+                            <h:commandLink action="#{applicationController.fetchBirdLst}" class="btn btn-primary" >
+                                <f:param name="action" value ="53103"/>
+
+                                <div class='image'>
+                                    <img src="resources/images/peacock.jpg" alt="peacock" />
+                                </div>
+                                <h2 class='photo-name'>Peacock</h2>
+                            </h:commandLink>
+                        </li>
+                        <li class="photo-right" data-prod_id="V-A1037">
+                            <h:commandLink action="#{applicationController.fetchBirdLst}" class="btn btn-primary" >
+                                <f:param name="action" value ="32101"/>
+                                <div class='image'>
+                                    <img src="resources/images/pelican.jpg" alt="pelican" />
+                                </div>
+                                <h2 class='photo-name'>Pelicans</h2>
+                            </h:commandLink>
+                        </li>
+                    </ul>
+                </div>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
+

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <link href="../resources/css/images.css" rel="stylesheet" type="text/css"/>
+        <title>View Individual Birds</title> 
+    </h:head>
+    
+    <h:body>
+        <h:form>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Search Birds
+                </div>
+            <div class="logout">
+            <h:commandLink value="Logout" action="#{applicationController.logout()}" />
+            </div>
+            </div>
+            
+       
+            <h:form id="MyForm">
+                <h:outputLabel id="birdName" value="Bird Name"  />:
+                <h:outputText value="#{applicationController.bird.birdName}" /> 
+                <br></br>
+                <br></br>
+              
+                <h:outputLabel id="habitat" value="Habitat"  />:
+                <h:outputText value="#{applicationController.bird.habitat}" /> 
+                <br></br>
+                <br></br>
+                
+                <h:outputLabel id="birdTypeId" value="Bird Type"/>:
+                <h:outputText value="#{applicationController.bird.birdTypeEntity.birdTypeName}" /> 
+                <br></br>
+                <br></br>
+               
+                <h:outputLabel id="description" value="Description"/>:
+                <h:outputText value="#{applicationController.bird.description}" /> 
+                <br></br>
+                <br></br>
+                
+                <h:outputLabel id="avgCount" value="Avg Count"/>:
+                <h:outputText value="#{applicationController.bird.avgCount}" /> 
+                <br></br>
+                <br></br>
+                
+                <h:outputLabel id="cityTypeId" value="City Type"/>:
+                <h:outputText value="#{applicationController.bird.cityEntityId.cityName}" /> 
+                <br></br>              
+                <h:link value="Go Back" outcome="/searchBirds" />               
+            </h:form>
+        </div>
+        </h:form>
+    </h:body>
+</html>
+

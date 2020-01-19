@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <link href="../resources/css/images.css" rel="stylesheet" type="text/css"/>
+       
+        <title>Add Bird Information</title> 
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="container">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-brand">
+                        Edit Birds
+                    </div>
+                    <div class="logout">
+                        <h:commandLink value="Logout" action="#{applicationController.logout()}" />
+                    </div>
+                </div>
+                <div>
+                    <f:view>
+                        <h:form>
+                            <h1><h:outputText value="Create"/></h1>
+                            <table class="table table-bordered ">
+                                <tr>
+                                    <div class="form-group">
+                                        <td width ="200">
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <h:outputLabel value="Bird Name" class="cols-sm-2 control-label" for="Bird Name" />
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h:inputText id="birdName" value="#{applicationController.bird.birdName}" disabled="true" title="birdName" required="true"/>
+                                            <h:message for="birdName" style="color: red"/> 
+                                        </td>
+                                    </div>
+                                </tr>
+                                <tr>
+
+                                    <td width ="100" valign="top">Bird Type: </td>
+                                    <td>
+                                        <h:selectOneMenu id="birdTypeId" value="#{applicationController.bird.birdTypeEntity.birdTypeId}" disabled="true">
+                                            <f:selectItem itemValue="#{null}" itemLabel="--select--" />
+                                            <f:selectItems value="#{applicationController.allBirdTypes}" var="c"  
+                                                           itemLabel="#{c.birdTypeName}" itemValue="#{c.birdTypeId}" />
+                                        </h:selectOneMenu>
+                                        <h:message for="birdTypeId" style="color: red"/> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <div class="form-group">
+                                        <td>
+                                            <h:outputLabel value="Habitat" for="Habitat" />
+                                        </td>
+                                        <td>
+                                            <h:inputText id="habitat" maxlength="30" value="#{applicationController.bird.habitat}" title="habitat" required="true"/>
+                                            <h:message for="habitat" style="color: red"/> 
+                                        </td>
+                                    </div>
+                                </tr>
+
+                                <tr>
+                                    <div class="form-group">
+                                        <td>
+                                            <h:outputLabel value="Description" for="Description" />
+                                        </td>
+                                        <td>
+                                            <h:inputText id="description" maxlength="50" value="#{applicationController.bird.description}" title="description" required="true"/>
+                                            <h:message for="description" style="color: red"/> 
+                                        </td>
+                                    </div>
+                                </tr>
+
+                                <tr>
+                                    <div class="form-group">
+                                        <td>
+                                            <h:outputLabel value="Average Count" for="Average Count" />
+                                        </td>
+                                        <td>
+                                            <h:inputText id="averageCount" maxlength="3" value="#{applicationController.bird.avgCount}" title="averageCount" required="true"/>
+
+                                            <h:message for="averageCount" style="color: red"/> 
+                                        </td>
+                                    </div>
+                                </tr>   
+
+                                <tr>
+
+                                    <td width ="100" valign="top">City Name </td>
+                                    <td>
+                                        <h:selectOneMenu id="cityId" value="#{applicationController.bird.cityEntityId.cityId}" disabled="true">
+                                            <f:selectItem itemValue="#{null}" itemLabel="--select--" />
+                                            <f:selectItems value="#{applicationController.allCityTypes}" var="c"  
+                                                           itemLabel="#{c.cityName}" itemValue="#{c.cityId}" />
+                                        </h:selectOneMenu>
+                                        <h:message for="cityId" style="color: red"/> 
+                                    </td>
+                                </tr>                            
+                            </table>
+                            <h:commandButton id="submit" value="Submit" action="#{applicationController.updateBird(applicationController.bird)}" class="btn btn-primary" />
+                            <h:commandButton id="close" value="Close" action="adminHome.xhtml" class="btn btn-primary" />                     
+                        </h:form>
+
+                    </f:view>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>

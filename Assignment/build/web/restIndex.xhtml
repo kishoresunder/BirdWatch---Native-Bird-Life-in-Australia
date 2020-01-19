@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>Registrations</title> 
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Admin Registration
+                </div>
+
+            </div>
+            <div>
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Create"/></h1>
+                        <table class="table table-bordered ">
+                            <tr>
+                                <div class="form-group">
+                                    <td width ="200">
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <h:outputLabel value="Event Name" class="cols-sm-2 control-label" for="Event Name" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h:inputText id="eventName" label="eventName" size="32"
+                                                     value="#{webServiceUser.eventName}" required="true" requiredMessage="Event Name is required!"></h:inputText>
+                                        <h:message for="eventName" style="color: red"/>  
+                                    </td>
+                                </div>
+
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="Event Date" for="Event Date" />
+                                    </td>
+                                    <td>
+                                        <h:inputText id="eventDate" label="eventDate" size="32"
+                                                     value="#{webServiceUser.eventDate}" required="true" requiredMessage="Event date is required!"></h:inputText>
+                                        <h:message for="eventDate" style="color: red"/>  
+                                    </td>
+                                </div>
+
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="Description" for="Description" />
+                                    </td>
+                                    <td>  <h:inputText id="Description" label="Description" size="32"
+                                                       value="#{webServiceUser.description}" required="true" requiredMessage="Description is required!"></h:inputText>
+                                        <h:message for="Description" style="color: red"/>   </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="Street" for="Street" />
+                                    </td>
+                                    <td>  <h:inputText id="Street" label="Street" size="32"
+                                                       value="#{webServiceUser.street}" required="true" requiredMessage="Street name is required!"></h:inputText>
+                                        <h:message for="Street" style="color: red"/>   </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="City" for="City" />
+                                    </td>
+                                    <td>  <h:inputText id="City" label="City" size="32"
+                                                       value="#{webServiceUser.city}" required="true" requiredMessage="City name is required!"></h:inputText>
+                                        <h:message for="City" style="color: red"/>   </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="postCode" for="postCode" />
+                                    </td>
+                                    <td>  <h:inputText id="postCode" label="postCode" size="32"
+                                                       value="#{webServiceUser.postCode}" required="true" requiredMessage="Post code is Required!"></h:inputText>
+                                        <h:message for="postCode" style="color: red"/>   </td>
+                                </div>
+                            </tr>
+                        </table>
+                        <h:commandButton id="submit" value="Submit" action="#{webServiceUser.setUserWebService()}" /> 
+                    </h:form>
+
+                    <c:if test="#{webServiceUser.isAdded == true}">
+                        <p style="color: yellowgreen">Your event has been successfully added!!!</p>
+                    </c:if>
+
+                </f:view>
+                
+                
+                <input type="text" id="qta_field" value="#{webServiceUser.eventName}" required="true"/>
+                <a href='' onclick="this.href='webresources/user/getAll?name='+document.getElementById('qta_field').value">Search For an Event</a>
+                     
+            </div>
+             <h:link outcome="index.xhtml" value="GoBack" /> 
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+         <link href="../resources/css/images.css" rel="stylesheet" type="text/css"/>
+        <title>Admin Home</title> 
+    </h:head>    
+    <h:body>
+       
+        <h:form>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Admin Home
+                </div>
+            <div class="logout">
+            <h:commandLink value="Logout" action="#{applicationController.logout()}" />
+            </div>
+            </div>
+            <h:link value="Add Bird Information" outcome="addBirds.xhtml"></h:link>
+            <br></br><br></br>
+            <h:link value="Add Bird Types" outcome="addBirdTypes.xhtml"></h:link>
+            <br></br><br></br>
+            <h:link value="Add City Names" outcome="addCityNames.xhtml"></h:link>
+            <br></br><br></br>
+            <h:link value="Modify Birds" outcome="displayBirds.xhtml"></h:link>
+            <br></br><br></br>
+            <h:link value="Modify City Types" outcome="modifyCityTypes.xhtml"></h:link>
+            <br></br><br></br>
+            <h:commandLink value="User Profile" action="#{applicationController.fetchUserInfo()}" />
+            <br></br><br></br>
+            <a href="../restIndex.xhtml">Create Event</a>
+<!--            <h:link value="Add Events" outcome="../restIndex.xhtml"></h:link>-->
+        </div>
+        </h:form>
+    </h:body>
+</html>

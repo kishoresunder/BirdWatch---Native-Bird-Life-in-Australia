@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>Registrations</title> 
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Registration
+                </div>
+                    
+            </div>
+            <div>
+                <f:view>
+                    <h:form id="MyForm">
+                        <h1><h:outputText value="Create"/></h1>
+                        <table class="table table-bordered ">
+                            <tr>
+                                <div class="form-group">
+                                    <td width ="200">
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <h:outputLabel value="Name" class="cols-sm-2 control-label" for="Name" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h:inputText id="adminName" maxlength="15" value="#{admin.adminName}" title="adminName" />
+                                        <h:message for="adminName" style="color: red"/>  
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="Email" for="Email" />
+                                    </td>
+                                    <td>
+                                        <h:inputText id="email" value="#{admin.adminEmail}" title="email" />
+                                        <h:message for="email" style="color: red"/>  
+                                    </td>
+                                </div>
+
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="Password" for="password" />
+                                    </td>
+                                    <td>
+                                        <h:inputSecret id="password" value="#{admin.password}" title="password" />
+
+                                          <h:message for="password" style="color: red"/> 
+                                    </td>
+                                </div>
+                            </tr>
+                            
+                            <tr>
+                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="Confirm Password" for="confirmPassword" />
+                                    </td>
+                                    <td>
+                                        <h:inputSecret id="confirmPassword" value="#{admin.confirmPassword}" title="confirmPassword" onchange="check()" />
+
+                                          <h:message for="confirmPassword" style="color: red"/> 
+                                          <span id='message'></span>
+                                    </td>
+                                </div>
+                            </tr>
+                           
+                            <tr>
+<!--                                <div class="form-group">
+                                    <td>
+                                        <h:outputLabel value="Confirm Password" for="Confirm Password" />
+                                    </td>
+                                    <td>
+                                      <h:inputText id="password" value="" title="password" >
+                                          
+                                      </h:inputText>
+                                        
+                                        <span id='message'></span>
+                                    </td>
+                                </div>
+                            </tr>-->
+                            </tr>
+                            <tr>
+                                 <td>
+                                        <h:outputLabel value="userType" for="userType" />
+                                        
+                                    </td>
+                               
+                                <td>
+                                    <h:selectOneRadio value = "#{admin.userType}"> 
+                                    <f:selectItem itemValue = "user" itemLabel = "User" /> 
+                                    <f:selectItem itemValue = "admin" itemLabel = "Admin" />
+                                    </h:selectOneRadio>
+                                     <h:message for="userType" style="color: red"/>
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                
+                                <td>
+                                    
+                                    <h:commandButton id="submit" value="Submit" action="#{applicationController.addAdmin(admin)}" class="btn btn-primary" />
+                            <h:commandButton id="close" value="Close" action="index.xhtml" immediate="true" class="btn btn-primary" />
+                        
+                                </td>
+                            </tr>
+                            </table>
+                    </h:form>
+                </f:view>
+            </div>
+        </div>
+    </h:body>
+    <script>
+//        var  = function () {
+//            
+//        
+//            if (document.getElementById('MyForm:password').value ==
+//                    document.getElementById('MyForm:confirm_password').value) {
+//                document.getElementById('message').style.color = 'green';
+//                document.getElementById('message').innerHTML = 'matching';
+//            } else {
+//                document.getElementById('message').style.color = 'red';
+//                document.getElementById('message').innerHTML = 'not matching';
+//            }
+//        }
+function check() {
+    
+    if(document.getElementById('MyForm:password').value === document.getElementById('MyForm:confirmPassword').value) {
+       
+        document.getElementById('message').innerHTML = "Password match";
+         document.getElementById('message').style.color = 'green';
+    } else {
+        
+        document.getElementById('message').innerHTML = "Password dont match";
+         document.getElementById('message').style.color = 'red';
+    }
+}
+    </script>
+
+</html>
+

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>Search Birds</title> 
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Search Birds
+                </div>
+            </div>
+            <h:form id="MyForm">
+                <td width ="100" valign="top">Bird Name </td>
+                <td>
+                    <h:inputText id="searchByName" value="#{applicationController.searchByName}" title="searchByName" />
+                    <!--                        <h:commandButton id="searchByNameSubmit" value="Search" action="" class="btn btn-primary" />-->
+                </td>
+                <td width ="100" valign="top">City Name </td>
+                <td>
+                    <h:selectOneMenu id="cityId" value="#{bird.cityId}">
+                        <f:selectItem itemValue="#{null}" itemLabel="--select--" />
+                        <f:selectItems value="#{applicationController.allCityTypes}" var="c"  
+                                       itemLabel="#{c.cityName}" itemValue="#{c.cityId}" />
+                    </h:selectOneMenu>
+                    <!--                        <h:commandButton id="searchByCitySubmit" value="Search" action="" class="btn btn-primary" />-->
+                </td>
+                <td>
+                    <h:commandButton id="searchBirds" value="Search" action="#{applicationController.searchBird(applicationController.searchByName, bird.cityId)}" class="btn btn-primary" />
+                </td>
+                <table class="table table-bordered table-striped">
+                    <!-- For each property in properties ArrayList... --> 
+                    <tr>
+                        <td> 
+                            <h:outputLabel id="birdName" value="Bird Name"  />
+                        </td>   
+                        <td> 
+                            <h:outputLabel id="cityName" value="City Name"  />
+                        </td>
+                    </tr>
+                    <ui:repeat id="Myrepeat" value="#{applicationController.birdList}"  var="birdEntity" varStatus="status"> 
+                        <tr> 
+                            <td>
+                                <h:outputText value="#{applicationController.birdList.get(status.index).birdName}" id="birdName" />  
+                            </td>
+                            <td>
+                                <h:outputText value="#{applicationController.birdList.get(status.index).cityEntityId.cityName}" id="cityName" />  
+                            </td>
+                             <td>
+                                <h:commandLink value="View" action="#{applicationController.returnSearchBirdLst(applicationController.birdList.get(status.index).birdName, applicationController.birdList.get(status.index).cityEntityId.cityId)}">
+                                </h:commandLink>
+                            </td>
+                        </tr> 
+                    </ui:repeat> 
+                </table>
+                <h:link outcome="index" value="GoBack" /> 
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
